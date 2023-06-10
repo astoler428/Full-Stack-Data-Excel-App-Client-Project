@@ -1,22 +1,12 @@
-/* home */
-
-/* body {
-  background-color: lightgray;
-} */
-
 h1 {
   text-align: center;
   font-size: 60px;
 }
 .container {
   display: flex;
-  /* position: absolute;
-  height: 100%;
-  width: 100%; */
   margin-top: 100px;
   justify-content: center;
   align-items: center;
-  /* border: 2px solid black; */
 }
 
 .add-data,
@@ -68,8 +58,6 @@ a {
   color: darkblue;
 }
 
-/* nav */
-
 ul {
   list-style-type: none;
   display: flex;
@@ -96,8 +84,6 @@ li {
   color: black;
 }
 
-/* random data */
-
 * {
   outline: none;
 }
@@ -118,10 +104,6 @@ li {
   margin-right: 20px;
 }
 
-/* .data-container {
-  text-align: center;
-} */
-
 .data-textarea {
   width: 80%;
   height: 200px;
@@ -136,8 +118,6 @@ li {
   font-size: 25px;
 }
 
-/* add Tags */
-
 #tag-div {
   display: inline-block;
 }
@@ -146,9 +126,6 @@ li {
   margin: 0 10px;
 }
 
-.add-tags-container {
-  display: inline-block;
-}
 .update-tags-btn {
   display: block;
   margin: auto;
@@ -163,8 +140,6 @@ li {
   font-size: 25px;
   border-radius: 10px;
 }
-
-/* Add Form */
 
 form * {
   border-radius: 20px;

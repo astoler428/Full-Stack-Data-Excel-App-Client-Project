@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchRandomData, fetchRecentTag, fetchAllTags } from "./apiCalls";
 import { useNavigate } from "react-router-dom";
 
-//Contains the filter by tag selection, button and textArea
+//Contains the filter by tag selection, button to fetch random datapoint, and textArea to display the random datapoint
 
 export default function TagDataheader({
   randomData,
@@ -11,44 +11,57 @@ export default function TagDataheader({
   setChosenTagFilter,
   updatedTagCount,
 }) {
-  const [filterTags, setFilterTags] = useState([]); //list of existing tags
+  const [filterTags, setFilterTags] = useState([]); //list of existing tags (gotten from database)
   const navigate = useNavigate();
 
-  async function getRandomData() {
-    const res = await fetchRandomData(chosenTagFilter);
+  //configures the header on load and every time an update has been made to the tags
 
-    if (res.status === 404) {
-      window.alert("No datapoint found with that filter");
+  useEffect(() => {
+    setHeader();
+
+    //API call to fetch all the existing tags to display in the drop down
+    //API call to get recent (last used) tag to default to that
+    //clear random data textarea
+    async function setHeader() {
+      const res = await fetchAllTags();
+      const tags = await res.json();
+      tags.unshift(" ", "RANDOM DATA"); //always include these two tag options
+      setFilterTags(tags);
+      setRecentTag();
       setRandomData(null);
-      return;
     }
-    const data = await res.json();
-    setRandomData(data);
-    navigate(`${data.id}`);
-  }
+  }, [updatedTagCount]);
 
+  //fetches the last used tag stored in database
   async function setRecentTag() {
     const res = await fetchRecentTag();
     const recentTag = await res.json();
     setChosenTagFilter(recentTag.tag);
   }
 
-  async function setHeader() {
-    const res = await fetchAllTags();
-    const tags = await res.json();
-    tags.unshift(" ", "RANDOM DATA");
-    setFilterTags(tags);
-    setRecentTag();
-    setRandomData(null);
-  }
-
-  useEffect(() => {
-    setHeader();
-  }, [updatedTagCount]);
-
   const displayFilterTags = filterTags.map((tag) => (
     <option key={Math.random()}>{tag}</option>
   ));
+
+  //onclick handler for the button
+  async function getRandomData() {
+    //API call to get random data based on filter
+
+    const res = await fetchRandomData(chosenTagFilter);
+
+    //if no datapoint found
+    if (res.status === 404) {
+      window.alert("No datapoint found with that filter");
+      setRandomData(null);
+      return;
+    }
+
+    //set state to the data found and navigate to the nested route url
+
+    const data = await res.json();
+    setRandomData(data);
+    navigate(`${data.id}`);
+  }
 
   return (
     <>

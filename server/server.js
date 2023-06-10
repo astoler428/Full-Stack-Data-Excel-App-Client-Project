@@ -4,29 +4,25 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const bodyParser = require("body-parser");
-const addData = require("./controllers/dataController.js");
 const { createFile } = require("./excel/excel.js");
-const {
-  getAllTags,
-  updateTag,
-  updateRecentTag,
-  getRecentTag,
-} = require("./controllers/tagController");
+
 const excelFileNames = ["Data.xlsx", "Context.xlsx", "Source.xlsx"];
 
-app.use(express.static(path.join(__dirname, "..", "FRONTEND", "public")));
+//built in middleware
+
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json()); //allows put request body to be accessed
+
+//change to the url that front end runs on
 app.use(
   cors({
-    //change based on url "http://localhost:3001"
+    // origin: "http://localhost:3001",
     origin: "https://aligned-solutions.netlify.app",
   })
 );
 
-//allows put request body to be accessed
-app.use(bodyParser.json());
-
+//GET request that creates the three excel files the client requested
 app.get("/excel/create", (req, res) => {
   try {
     excelFileNames.forEach((fileName) => {
@@ -38,15 +34,12 @@ app.get("/excel/create", (req, res) => {
   }
 });
 
-// app.post("/data/add", addData);
-// app.get("/data/random", getRandomData);
-app.use("/data", require("./routes/data"));
+//custom middleware
 
-// app.get("/tag", getAllTags);
-// app.put("/tag/update", updateTag);
-// app.put("/tag/recent", updateRecentTag);
-// app.get("/tag/recent", getRecentTag);
+app.use("/data", require("./routes/data"));
 app.use("/tag", require("./routes/tag"));
+
+//catch all else not found page
 
 app.get("/*", (req, res) =>
   res.sendFile(path.join(__dirname, "/public", "/404.html"))

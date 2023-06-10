@@ -1,6 +1,8 @@
 import React from "react";
 import MyNavLink from "./MyNavLink";
 
+//Navbar at the top of each page except the home page
+
 export default function Nav() {
   const pages = [
     { title: "Homepage", path: "/" },
@@ -19,12 +21,3 @@ export default function Nav() {
     </nav>
   );
 }
-
-// <NavLink
-//             className={({ isActive }) =>
-//               isActive ? "nav-link-active" : "nav-link"
-//             }
-//             to="/"
-//           >
-//             Homepage
-//           </NavLink>

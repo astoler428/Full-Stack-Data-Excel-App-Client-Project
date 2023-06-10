@@ -1,8 +1,9 @@
 import React from "react";
-import useBackgroundColor from "./useBackgroundColor";
+
+//not found page for any url not caught in routes
 
 export default function NotFound() {
-  useBackgroundColor("black");
+  document.body.style.backgroundColor = "black";
 
   return <h1 className="not-found">Page Not Found</h1>;
 }

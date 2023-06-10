@@ -1,3 +1,5 @@
+//simulates a database using JSON files in the models folder
+
 const fsPromises = require("fs").promises;
 const path = require("path");
 
@@ -24,6 +26,8 @@ const recentTagDB = {
     await updateRecentTagDB();
   },
 };
+
+//three functions below rewrite to the "database" files in the model folder
 
 async function updateTagsDB() {
   await fsPromises.writeFile(

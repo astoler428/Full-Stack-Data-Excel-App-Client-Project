@@ -1,3 +1,5 @@
+//all functions relating to creating and exporting to excel files
+
 const xlsx = require("xlsx");
 const { dataDB, tagsDB, recentTagDB } = require("../db/databases.js");
 
@@ -17,7 +19,6 @@ async function createFile(fileName) {
     await dataDB.setData([]);
     await tagsDB.setTags([]);
     await recentTagDB.setRecentTag({ tag: "" });
-    // await updateDB();
   }
 
   const workBook = xlsx.utils.book_new();
@@ -30,11 +31,8 @@ function exportToDataExcelFile() {
   let file = xlsx.readFile("./Data.xlsx");
   let lineNumber = 0;
   dataDB.data.forEach((pieceOfData) => {
-    // let thisData = [pieceOfData.dataPoint, ...pieceOfData.tags];
-    // console.log(thisData);
     xlsx.utils.sheet_add_json(
       file.Sheets.Sheet1,
-      //this is not working
       [[pieceOfData.dataPoint, ...pieceOfData.tags]],
       {
         skipHeader: 1,

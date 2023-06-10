@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import useBackgroundColor from "./useBackgroundColor";
+
+//Website home page with options to navigate to Add and Tag pages
 
 export default function Home() {
-  useBackgroundColor("gray");
+  document.body.style.backgroundColor = "gray";
 
   return (
     <>

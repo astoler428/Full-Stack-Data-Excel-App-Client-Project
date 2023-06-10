@@ -6,22 +6,20 @@ import Layout from "./Layout";
 import NotFound from "./NotFound";
 import AddTags from "./AddTags";
 import "./styles.css";
-import BackgroundProvider from "./BackgroundProvider";
+
 function App() {
   return (
     <>
-      <BackgroundProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/data" element={<Layout />}>
-            <Route path="add" element={<AddPage />} />
-            <Route path="tag" element={<TagPage />}>
-              <Route path=":id" element={<AddTags />} />
-            </Route>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/data" element={<Layout />}>
+          <Route path="add" element={<AddPage />} />
+          <Route path="tag" element={<TagPage />}>
+            <Route path=":id" element={<AddTags />} />
           </Route>
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
-      </BackgroundProvider>
+        </Route>
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }

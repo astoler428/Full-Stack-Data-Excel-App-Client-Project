@@ -18,12 +18,14 @@ export default function AddForm() {
     });
   }
 
+  //api call to add form data and then clear form
   async function handleSubmit(e) {
     e.preventDefault();
     addData(formData);
     setFormData(initialFormData);
   }
 
+  //determines the current date
   function setDefaultDate() {
     const date = new Date();
     let day = date.getDate();
