@@ -17,8 +17,8 @@ app.use(bodyParser.json()); //allows put request body to be accessed
 //change to the url that front end runs on
 app.use(
   cors({
-    // origin: "http://localhost:3001",
-    origin: "https://aligned-solutions.netlify.app",
+    origin: "http://localhost:3001",
+    // origin: "https://aligned-solutions.netlify.app",
   })
 );
 

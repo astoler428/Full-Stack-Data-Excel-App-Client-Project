@@ -113,7 +113,8 @@ export default function AddTags() {
   function getFilteredSuggestions(prefix) {
     prefix = prefix.toLowerCase();
     const filteredFilterTags = filterTags.filter((tag) => {
-      return tag.startsWith(prefix) && tag !== " " && tag !== "RANDOM DATA";
+      tag = tag.toLowerCase();
+      return tag.startsWith(prefix) && tag !== " " && tag !== "random data";
     });
     return filteredFilterTags || "";
   }
