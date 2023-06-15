@@ -10,6 +10,7 @@ export default function TagPage() {
   const [randomData, setRandomData] = useState(null); //will be an object with dataPoint, id and tags[]
   const [chosenTagFilter, setChosenTagFilter] = useState(); //the tag filter chosen from the drop down menu
   const [updatedTagCount, setUpdatedTagCount] = useState(0); //the number of times a tag update has been made
+  const [filterTags, setFilterTags] = useState([]); //list of existing tags (gotten from database)
 
   document.body.style.backgroundColor = "lightgreen";
 
@@ -21,6 +22,8 @@ export default function TagPage() {
         chosenTagFilter={chosenTagFilter}
         setChosenTagFilter={setChosenTagFilter}
         updatedTagCount={updatedTagCount}
+        filterTags={filterTags}
+        setFilterTags={setFilterTags}
       />
       {/*Outlet will be the AddTags page with url params for the id of the datapoint*/}
       <Outlet
@@ -29,6 +32,7 @@ export default function TagPage() {
           setRandomData,
           chosenTagFilter,
           setUpdatedTagCount,
+          filterTags,
         ]}
       />
     </>

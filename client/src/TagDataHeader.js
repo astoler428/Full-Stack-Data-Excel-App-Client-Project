@@ -10,8 +10,9 @@ export default function TagDataheader({
   chosenTagFilter,
   setChosenTagFilter,
   updatedTagCount,
+  filterTags,
+  setFilterTags,
 }) {
-  const [filterTags, setFilterTags] = useState([]); //list of existing tags (gotten from database)
   const navigate = useNavigate();
 
   //configures the header on load and every time an update has been made to the tags
@@ -25,6 +26,7 @@ export default function TagDataheader({
     async function setHeader() {
       const res = await fetchAllTags();
       const tags = await res.json();
+      tags.sort(); //include sorting alphabeticalls
       tags.unshift(" ", "RANDOM DATA"); //always include these two tag options
       setFilterTags(tags);
       setRecentTag();
@@ -45,8 +47,10 @@ export default function TagDataheader({
 
   //onclick handler for the button
   async function getRandomData() {
-    //API call to get random data based on filter
+    //if I'm in the subroute, navigate back, which refreshes page, necessary bc of focus glitch
+    navigate(".");
 
+    //API call to get random data based on filter
     const res = await fetchRandomData(chosenTagFilter);
 
     //if no datapoint found

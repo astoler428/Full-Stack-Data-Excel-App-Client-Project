@@ -136,6 +136,10 @@ li {
   border-radius: 10px;
 }
 
+.new-tags-container {
+  display: flex;
+}
+
 .new-tags-container * {
   font-size: 25px;
   border-radius: 10px;
@@ -189,4 +193,19 @@ textarea {
   text-align: center;
   font-size: 80px;
   margin-top: 150px;
+}
+
+.input-tag-container {
+  position: relative;
+}
+
+.suggest {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+.input-tag {
+  background: transparent;
 }
