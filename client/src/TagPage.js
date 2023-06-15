@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import TagDataheader from "./TagDataHeader";
+import { createFiles } from "./apiCalls";
 
 //Parent component for the tag page which will display a random datapoint and provide option for tags
 
@@ -13,6 +14,7 @@ export default function TagPage() {
   const [filterTags, setFilterTags] = useState([]); //list of existing tags (gotten from database)
 
   document.body.style.backgroundColor = "lightgreen";
+  createFiles();
 
   return (
     <>

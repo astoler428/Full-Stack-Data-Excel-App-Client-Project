@@ -43,4 +43,21 @@ function exportToDataExcelFile() {
   });
 }
 
-module.exports = { exportToExcel, createFile, exportToDataExcelFile };
+function exportToTagsExcelFile() {
+  let file = xlsx.readFile("./Tags.xlsx");
+  let lineNumber = 0;
+  tagsDB.tags.forEach((tag) => {
+    xlsx.utils.sheet_add_json(file.Sheets.Sheet1, [[tag]], {
+      skipHeader: 1,
+      origin: lineNumber++,
+    });
+    xlsx.writeFile(file, "./Tags.xlsx");
+  });
+}
+
+module.exports = {
+  exportToExcel,
+  createFile,
+  exportToDataExcelFile,
+  exportToTagsExcelFile,
+};

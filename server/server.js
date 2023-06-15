@@ -6,7 +6,12 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const { createFile } = require("./excel/excel.js");
 
-const excelFileNames = ["Data.xlsx", "Context.xlsx", "Source.xlsx"];
+const excelFileNames = [
+  "Data.xlsx",
+  "Context.xlsx",
+  "Source.xlsx",
+  "Tags.xlsx",
+];
 
 //built in middleware
 

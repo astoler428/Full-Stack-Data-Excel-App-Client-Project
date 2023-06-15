@@ -1,5 +1,8 @@
 const { dataDB, tagsDB, recentTagDB } = require("../db/databases.js");
-const { exportToDataExcelFile } = require("../excel/excel.js");
+const {
+  exportToDataExcelFile,
+  exportToTagsExcelFile,
+} = require("../excel/excel.js");
 
 //controller that returns the array of all tags (used by front end to set drop down)
 function getAllTags(req, res) {
@@ -43,7 +46,7 @@ async function updateTag(req, res) {
   await tagsDB.setTags([...tagsDB.tags, ...nonDuplicateTags]);
 
   exportToDataExcelFile();
-
+  exportToTagsExcelFile();
   res.json({});
 }
 
